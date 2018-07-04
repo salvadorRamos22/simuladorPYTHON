@@ -1,0 +1,53 @@
+{% extends 'base/baseAdmin.html' %}
+{% load staticfiles %}
+
+{% block title %}Fase de cultivo{% endblock %}
+
+{% block content %}
+<div class="container">
+    <button type="submit" class="btn btn-primary ">Nuevo</button>
+</div>
+
+<div class="container">           
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Etapa</th>
+        <th>Descripcion</th>
+        <th>Dias de duracion</th>
+        <th>Hidricos</th>
+        <th>Estado</th>
+        <th>Accion</th>
+      </tr>
+    </thead>
+    <tbody>
+    	{% if fase %}
+    	{% for fases in fase %}
+
+      <tr>
+        <td>{{fases.id}}</td>
+        <td>{{fases.etapa}}</td>
+        <td>{{fases.descripcion}}</td>
+        <td>{{fases.diasDuracion}}</td>
+        <td>{{fases.hidricos}}</td>
+        {% if tipos.estado == 1 %}
+        <td><strong>Habilitado</strong></td>
+        {%else%}
+        <td><strong>Deshabilitado</strong></td>
+        {%endif%}
+        <td>
+        	<a class="btn btn-primary" href="">Editar</a>
+			<a class="btn btn-danger" href="">Eliminar</a>
+			<a class="btn btn-info" href="">Habilitar</a>
+        </td>
+      </tr>
+      {% endfor %}
+      {% else %}
+      <h1>No existe registro alguno</h1>
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

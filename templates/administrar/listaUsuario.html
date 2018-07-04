@@ -1,0 +1,56 @@
+{% extends 'base/baseAdmin.html'%}
+
+{% load staticfiles %}
+
+{% block title %} Listado usuarios{% endblock %}
+
+{%block content %}
+<div class="container">           
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Sexo</th>
+        <th>Tipo Usuario</th>
+        <th>Estado</th>
+        <th>Accion</th>
+      </tr>
+    </thead>
+    <tbody>
+    	{% if usuario %}
+    	{% for usuarios in usuario %}
+
+      <tr>
+      	<td>{{usuarios.id}}</td>
+        <td>{{usuarios.nombre}}</td>
+        <td>{{usuarios.apellido}}</td>
+        <td>{{usuarios.sexo}}</td>
+        <td>{{usuarios.tipoU.descripcion}}</td>
+        {% if usuarios.estado == 1 %}
+        	<td><strong>Habilitado</strong></td>
+        {% else %}
+        	<td><strong>Deshabilitado</strong></td>
+        {% endif %}
+        <td>
+        	<a class="btn btn-primary" href="{% url 'admi:verusuario' usuarios.id%}">Ver</a>
+        {% if usuarios.estado == 1%}
+			<a class="btn btn-danger" href="{% url 'admi:bloquearUsuario' usuarios.id %}">Bloquear</a>
+        {% else %}
+        	<a class="btn btn-success" href="{% url 'admi:habilitarUsuario' usuarios.id %}">Habilitar</a>
+        {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+      {% else %}
+      <h1>No existe registro alguno</h1>
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+
+
+
+
+{% endblock %}

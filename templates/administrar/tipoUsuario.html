@@ -1,0 +1,57 @@
+{% extends 'base/baseAdmin.html'%}
+{% load staticfiles %}
+
+{% block title %}Tipos de usuario{% endblock %}
+
+{% block content %}
+<div class="container">
+	
+	<form class="form-inline" method="POST" >
+	{% csrf_token %}
+    <div class="form-group">
+      <label class="sr-only" for="descripcion">Descripcion:</label>
+      <input type="tipoUsuario" class="form-control" id="descripcion" placeholder="Ingrese tipo de usuario"  name="descripcion" required="required">
+    </div>
+    <button type="submit" class="btn btn-primary ">Guardar</button>
+  </form>
+</div>
+
+
+<div class="container">           
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Descripcion</th>
+        <th>Estado</th>
+        <th>Accion</th>
+      </tr>
+    </thead>
+    <tbody>
+    	{% if tipo %}
+    	{% for tipos in tipo %}
+
+      <tr>
+        <td>{{tipos.id}}</td>
+        <td>{{tipos.descripcion}}</td>
+        {% if tipos.estado == 1 %}
+        <td><strong>Habilitado</strong></td>
+        {%else%}
+        <td><strong>Deshabilitado</strong></td>
+        {%endif%}
+        <td>
+        	<a class="btn btn-primary" href="">Editar</a>
+			<a class="btn btn-danger" href="{%url 'admi:eliminarTipo' tipos.id %}">Eliminar</a>
+			<a class="btn btn-info" href="{%url 'admi:habilitarTipo' tipos.id %}">Habilitar</a>
+        </td>
+      </tr>
+      {% endfor %}
+      {% else %}
+      <h1>No existe registro </h1>
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+
+
+{% endblock %}

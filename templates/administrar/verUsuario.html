@@ -1,0 +1,15 @@
+{% extends 'base/baseAdmin.html' %}
+
+{% load staticfiles %}
+
+{% block title %}Informacion de usuarios{% endblock %}
+
+{% block content%}
+<h2>Nombre:{{usuario.nombre}}</h2>
+<h2>Apellido:{{usuario.apellido}}</h2>
+<h2>Fecha de nacimiento:{{usuario.fechaNacimiento}}</h2>
+<h2>Sexo:{{usuario.sexo}}</h2>
+<h2>Email:{{usuario.email}}</h2>
+<h2>Tipo de usuario:{{usuario.tipoU.descripcion}}</h2>
+
+{% endblock %}

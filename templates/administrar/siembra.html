@@ -1,0 +1,62 @@
+{% extends 'base/baseAdmin.html' %}
+{% load staticfiles %}
+
+{% block title %}Siembras{% endblock %}
+
+{% block content %}
+<div class="container">
+  <form class="form-inline" method="POST" >
+  {% csrf_token %}
+    <div class="form-group">
+      <label class="sr-only" for="descripcion">Nombre:</label>
+      <input type="nombre" class="form-control" id="nombre" placeholder="Ingrese siembra"  name="nombre" required="required">
+      <label class="sr-only" for="descripcion">Descripcion:</label>
+      <input type="tipoUsuario" class="form-control" id="descripcion" placeholder="Ingrese descricpion"  name="descripcion" required="required">
+    </div>
+    <button type="submit" class="btn btn-primary ">Guardar</button>
+  </form>
+</div>
+
+<div class="container">           
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Nombre</th>
+        <th>Descripcion</th>
+        <th>Estado</th>
+        <th>Accion</th>
+      </tr>
+    </thead>
+    <tbody>
+    	{% if siembra %}
+    	{% for siembras in siembra %}
+
+      <tr>
+        <td>{{siembras.id}}</td>
+        {% if siembras.estado == 1 %}
+        <td><a href="">{{siembras.nombre}}</a></td>
+        {% else %}
+        <td>{{siembras.nombre}}</td>
+        {% endif %}
+        <td>{{siembras.descripcion}}</td>
+        {% if siembras.estado == 1 %}
+        <td><strong>Habilitado</strong></td>
+        {%else%}
+        <td><strong>Deshabilitado</strong></td>
+        {%endif%}
+        <td>
+        	<a class="btn btn-primary" href="">Editar</a>
+			<a class="btn btn-danger" href="">Eliminar</a>
+			<a class="btn btn-info" href="">Habilitar</a>
+        </td>
+      </tr>
+      {% endfor %}
+      {% else %}
+      <h1>No existe registro alguno</h1>
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

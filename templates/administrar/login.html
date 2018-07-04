@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html>
+	<head>
+		<title>Login</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{% static "css/main.css" %}" />
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<h1>Simulador</h1>
+				<p>Software para el desarrollo de Simulaciones<br />
+				de Siembra y Cultivo </p>
+			</header>
+
+		<!-- Signup Form -->
+			{{error}}
+
+			<form id="signup-form" method="POST" >
+				{% csrf_token %}
+				<input type="email" name="email" id="email" placeholder="Email Address" style="width: 290px" required >
+				<br/>
+				<input type="password" name="password" id="password" placeholder="password" required />
+				<br/>
+				<input type="submit" value="Sign Up" />
+			
+			</form>
+		<!-- Footer -->
+			<footer id="footer">
+
+				<ul class="icons">
+					<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+					<li><a href="#" class="icon fa-github"><span class="label">GitHub</span></a></li>
+					<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+					<li><a href="#" class="icon fa-facebook"><span class="label">facebook</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>&copy; Untitled.</li><li>Credits: <a href="http://html5up.net">HTML5 UP</a></li><li><a href="{% url 'login:registro' %}">Crea una cuenta</a></li>
+				</ul>
+			</footer>
+
+		<!-- Scripts -->
+			<script type="text/javascript" src="/static/js/main4.js"></script>
+			
+
+	</body>
+</html>

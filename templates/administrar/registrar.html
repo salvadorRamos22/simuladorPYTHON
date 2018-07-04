@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html>
+	<head>
+		<title>Registrar</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{% static "css/main.css" %}" />
+
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<h1>Simulador</h1>
+				<p>Registrate Ahora </p>
+			</header>
+
+		<!-- Signup Form -->
+
+			<form id="signup-form" method="POST" >
+				{% csrf_token %}
+				<input type="text" name="nombre" id="nombre" placeholder="nombre" required />
+				
+				<input type="text" name="apellido" id="apellido" placeholder="apellido" required />
+				<br/>
+				<input type="email" name="email" id="email" placeholder="Email Address" required style="width: 290px" />
+				{{error}}
+				<input type="password" name="password" id="password" placeholder="password" required />
+				<br/>
+				<label>Fecha Nacimiento</label>
+				<select style="width:100px" name="anio" >
+					{% for anio in year %}
+					<option value="{{anio}}" >{{anio}}</option>
+					{% endfor %}
+				</select>
+				
+				<select style="width:150px" name="mes">
+					{% for meses in mes %}
+					<option value="{{meses}}">{{meses}}</option>
+					{% endfor %}
+				</select>
+				
+				<select style="width:100px" name="dia">
+					{% for dias in dia %}
+					<option value="{{dias}}">{{dias}}</option>
+					{% endfor %}
+				</select>
+				<br/>
+				
+				<label>Sexo</label>
+				<select style="width: 170px" name="sexo" > 
+					<option value="0">Masculino</option>
+					<option value="1">Femenino</option>
+				</select>
+				<label>Profesion</label>
+				<select name="tipou" id="tipou" style="width:150px" >
+					{% for tipos in tipo %}
+					{% if tipos.id > 1%}
+					<option value="{{tipos.id}}" >{{tipos.descripcion}}</option>
+					{% endif %}
+					{% endfor %}
+				</select>
+				 	
+				<br/> 
+				
+				<input type="submit" value="Guardar" />
+			
+			</form>
+		<!-- Footer -->
+			<footer id="footer">
+
+				<ul class="icons">
+					<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+					<li><a href="#" class="icon fa-github"><span class="label">GitHub</span></a></li>
+					<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+					<li><a href="#" class="icon fa-facebook"><span class="label">facebook</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>&copy; Untitled.</li><li>Credits: <a href="http://html5up.net">HTML5 UP</a></li>
+				</ul>
+			</footer>
+
+		<!-- Scripts -->
+			<script type="text/javascript" src="/static/js/main4.js"></script>
+			
+
+	</body>
+</html>
