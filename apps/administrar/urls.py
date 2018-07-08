@@ -18,4 +18,6 @@ url(r'^listaUsuarioBloqueados$',usuariosBloqueados,name='usuariosBloqueados'),
 url(r'^habilitarUsuario/(?P<idusuario>\d+)/$',habilitarUsuario,name='habilitarUsuario'),
 url(r'^verUsuario/(?P<idusuario>\d+)/$',verUsuario,name='verusuario'),
 
+url(r'^nuevaFase$',nuevaFase,name="nuevaFase"),
+
 ]

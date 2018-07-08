@@ -35,7 +35,8 @@ def faseLista(request):
 	return render(request,'administrar/faseCultivo.html',{'fase':fase})
 
 def faseListaSiembra(request,idSiembra):
-	fase = faseCultivo.objects.filter(siembra=idSiembra)
+	smb = siembra.objects.get(id=idSiembra)
+	fase = faseCultivo.objects.filter(siembra=smb.nombre)
 	return render(request,'administrar/faseCultivo.html',{'fase':fase})
 
 
@@ -75,4 +76,23 @@ def habilitarUsuario(request,idusuario):
 def verUsuario(request,idusuario):
 	usua = usuario.objects.get(id=idusuario)
 	return render(request,'administrar/verUsuario.html',{'usuario':usua})
+
+#---------------------------------------------------------------------------------
+#Fase de cultivo
+@csrf_protect
+def nuevaFase(request):
+	
+	if request.method == 'POST':
+		fc = faseCultivo()
+		fc.etapa = request.POST['etapa']
+		fc.descripcion = request.POST['descripcion']
+		fc.diasDuracion = request.POST['diasD']
+		fc.hidricos = request.POST['hidricos']
+		fc.siembra = request.POST['siembra']
+		fc.estado = 1
+		fc.save()
+		return redirect('admi:faseCultivo')
+	siembras = siembra.objects.filter(estado=1)
+	return render(request,'administrar/nuevoFaseCultivo.html',{'siembras':siembras})
+
 # Create your views here.

@@ -20,7 +20,7 @@ def login(request):
 			us = usuario.objects.get(email=email2)
 			nombre = us.nombre
 			con2 = us.password
-			tiusu = us.tipoU 
+			tiusu = us.tipoU.id 
 			con3 = check_password(con,con2,setter=None,preferred='default')
 			if con3 == True:
 				usn=""

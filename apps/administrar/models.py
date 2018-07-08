@@ -26,11 +26,11 @@ class siembra(models.Model):
 		return self.nombre
 
 class faseCultivo(models.Model):
-	etapa = models.IntegerField()
+	etapa = models.CharField(max_length=50)
 	descripcion = models.CharField(max_length=50)
 	diasDuracion = models.IntegerField()
 	hidricos = models.DecimalField(max_digits=5,decimal_places=2)
-	siembra = models.IntegerField()
+	siembra = models.CharField(max_length=50)
 	estado = models.IntegerField()
 	def __str__(self):
 		return self.descripcion

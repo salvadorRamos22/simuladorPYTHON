@@ -1,0 +1,57 @@
+{% extends 'base/baseUsuario.html' %}
+{% load staticfiles %}
+
+{% block title %}nueva simulacion{% endblock %}
+
+{% block content %}
+<div class="panel panel-info">
+		<div class="panel-heading">
+		<div class="container text-center">
+			<h1>FORMULARIO DE SIMULACION</h1>		
+		</div>
+		</div>
+	</div>
+<form method="GET" action="" id="buscarSimulacion" class="form-horizontal">
+		<div class="form-group">
+		<label for="siembra" class="col-sm-2 control-label">Siembra:</label>
+		<div class="col-sm-4">
+			<select style="width:100px" name="siembra">
+				{%for siembra in siembras %}
+				<option value="{{siembra.nombre}}">{{siembra.nombre}}</option>
+				{% endfor %}
+			</select>
+		<input type="submit" name="" value="seleccionar" class="btn btn-primary">	
+		</div>
+	    </div>
+	
+</form>
+
+<form method="POST" class="form-horizontal">
+	
+
+	<div class="form-group">
+		<label for="etapa" class="col-sm-2 control-label">Nombre:</label>
+		<div class="col-sm-3">
+			<input type="text" name="nombre" id="nombre" class="form-control" placeholder="nombre..">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="etapa" class="col-sm-2 control-label">Linea de siembra:</label>
+		<div class="col-sm-3">
+			<input type="number" name="linea" id="linea" class="form-control" placeholder="linea..">
+		</div>
+	</div>
+	
+
+	<div class="form-group">
+		<label for="siembra" class="col-sm-2 control-label">Fases</label>
+		<div class="col-sm-4">
+			<input type="checkbox" name="fase" value="">
+		</div>
+		
+	</div>
+	
+</form>
+
+{% endblock %}
